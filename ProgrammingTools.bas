@@ -120,6 +120,29 @@ Public Function ConvertUnicodeTextToVBACode(ByRef text As String) As String
         char = Mid$(text, i, 1)
         codepoint = AscWLong(char)
         Select Case codepoint
+            Case &H22
+                char = """""" ' works out to 2 double-quote characters
+                Select Case state
+                    Case Start
+                        result = """" & char
+                        currLineLength = Len(result)
+                    Case InQuote
+                        If currLineLength + 5 >= VBA_MAX_LINE_LENGTH Then
+                            result = result & """ _" & vbCrLf & "    """ & char
+                            currLineLength = 7
+                        Else
+                            result = result & char
+                            currLineLength = currLineLength + 2
+                        End If
+                    Case NotInQuote
+                        If currLineLength + 9 >= VBA_MAX_LINE_LENGTH Then
+                            currLineLength = 7
+                        Else
+                            result = result & " & """ & char
+                            currLineLength = currLineLength + 6
+                        End If
+                End Select
+                state = InQuote
             Case &H21, &H23 To &H7E
                 Select Case state
                     Case Start
