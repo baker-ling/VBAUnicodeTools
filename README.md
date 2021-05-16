@@ -3,6 +3,11 @@
 
 This repository contains a standard VBA module ProgrammingTools.bas and associated userforms for working with Unicode text in the VB Editor (VBE).
 
+## References
+This code in these VBA modules references the following libraries.
+1. Microsoft VBScript Regular Expressions 5.5 
+2. Microsoft Visual Basic for Applications Extensibility 5.3.
+
 ## Main Features
 There are two main subroutines to help you edit VBA code that deals with Unicode characters outside the ASCII range to circumvent VBE's lack of support for Unicode.
 
@@ -19,18 +24,17 @@ Select VBA code in the VB editor with Unicode characters hard-coded hexidecimal 
 ## Additional Features
 There are a few other utility functions for processing Unicode text in VBA.
 
-`Public Function MsgBoxW(Prompt As String, Optional Buttons As VbMsgBoxStyle = vbOKOnly, Optional Title As String = "Microsoft PowerPoint") As VbMsgBoxResult`
-A *wide* version of `MsgBox`, adapted from forum post by John_w at https://www.mrexcel.com/board/threads/vba-display-foreign-character-code.1142510/post-5536387.
+- `Public Function MsgBoxW(Prompt As String, Optional Buttons As VbMsgBoxStyle = vbOKOnly, Optional Title As String = "Microsoft PowerPoint") As VbMsgBoxResult`<br /> A *wide* version of `MsgBox`, adapted from forum post by John_w at https://www.mrexcel.com/board/threads/vba-display-foreign-character-code.1142510/post-5536387.
 
-`Public Sub ShowCharForCodePoint()`
+- `Public Sub ShowCharForCodePoint()`<br />
 Shows a message box containing the character associated with the codepoint selected in the VB editor. Assumes that only VBA numerical literal is selected.
 
-`Public Function GetSelectedVBACode() As String`
+- `Public Function GetSelectedVBACode() As String`<br />
 Returns a string containing the code currently selected in the VB editor.
 
-`Public Function ConvertUnicodeTextToVBACode(ByRef text As String) As String`
+- `Public Function ConvertUnicodeTextToVBACode(ByRef text As String) As String`<br />
 Takes a string of ordinary text and returns a string with that text converted to corresponding VBA string literals, VBA constants, and calls to calls to `ChrW$`, all concatenated together. VBA line continuations and CRLFs are inserted whenever any line in the output would exceed 512 characters (Adjustable in the private constant `VBA_MAX_LINE_LENGTH` declared at the top of the module. Actual VBE max line length is 1024 characters.).
 
-`Public Function AscWLong(char As String) As Long`
+- `Public Function AscWLong(char As String) As Long`<br />
 Wrapper around AscW to make sure that all codepoints returned are positive. (Because VBA doesn't have unsigned data types!)
 
