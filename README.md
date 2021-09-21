@@ -18,8 +18,13 @@ There are two main subroutines to help you edit VBA code that deals with Unicode
 Place the cursor wherever you want to insert VBA code for a string containing Unicode characters outside the ASCII range, then run `PromptToInsertUnicodeStringIntoVBA`.
 The sub will show a userform with a single textbox that you can type into. Press the "Convert & Insert" button to convert the contents of that textbox to corresponding VBA code and insert it where you placed your cursor in the VB editor.
 
+![Screen capture of PromptToInsertUnicodeStringIntoVBA in action](prompt_for_unicode.gif)
+
+
 `Public Sub DisplayUnicodeFromVBACode()`<br />
 Select VBA code in the VB editor with Unicode characters hard-coded hexidecimal or decimal codepoints inside `ChrW$` or `ChrW` calls, then run `DisplayUnicodeFromVBACode`. The sub will show a userform with a single textbox containing those `ChrW$`/`ChrW` calls replaced by the Unicode characters they represent.
+
+![Screen capture of DisplayUnicodeFromVBACode in action](show_unicode_from_VBA_code.gif)
 
 ## Additional Features
 There are a few other utility functions for processing Unicode text in VBA.
