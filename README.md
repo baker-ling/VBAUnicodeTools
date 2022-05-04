@@ -1,10 +1,10 @@
 # VBAUnicodeTools
- Tools for working with Unicode in the VB Editor
+Tools for working with Unicode in the VB Editor
 
 This repository contains a standard VBA module ProgrammingTools.bas and associated userforms for working with Unicode text in the VB Editor (VBE).
 
 ## References
-This code in these VBA modules references the following libraries.
+The code in these VBA modules references the following libraries.
 1. Microsoft VBScript Regular Expressions 5.5 
 2. Microsoft Visual Basic for Applications Extensibility 5.3.
 
